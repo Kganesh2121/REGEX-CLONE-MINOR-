@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Matcher</title>
+    <style>
+        .input-box {
+            width: 1000px; /* Set the width of the input boxes */
+        }
+
+        /* CSS rule specifically for the test string input field */
+        #test_string {
+            height: 400px; /* Set the height of the test_string input box */
+        }
+    </style>
+</head>
+<body>
+    <h1>Regex Matcher</h1>
+    <form action="/" method="post">
+        <label for="regex_pattern">Search String:</label>
+        <input type="text" id="regex_pattern" name="regex_pattern" class="input-box"><br><br>
+        <label for="test_string">Input String:</label>
+        <input type="text" id="test_string" name="test_string" class="input-box"><br><br>
+        <button type="submit">Match</button>
+    </form>
+
+    {% if matches %}
+    <h2>Regular Expression Matches:</h2>
+    <ul>
+        {% for match in matches %}
+        <li>{{ match }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if email_matches %}
+    <h2>Emails Found in Input String:</h2>
+    <ul>
+        {% for email_match in email_matches %}
+        <li>{{ email_match }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Email Validation Result:</h3>
+    <ul>
+        {% for email, is_valid in email_validation_results.items() %}
+            {% if is_valid %}
+                <li>{{ email }} is valid.</li>
+            {% else %}
+                <li>{{ email }} is invalid.</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
